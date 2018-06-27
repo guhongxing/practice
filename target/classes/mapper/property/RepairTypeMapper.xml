@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lionel.mapper.property.RepairTypeMapper">
+  <resultMap id="BaseResultMap" type="com.lionel.model.property.RepairType">
+    <result column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="repair_type" jdbcType="VARCHAR" property="repairType" />
+  </resultMap>
+  <insert id="insert" parameterType="com.lionel.model.property.RepairType">
+    insert into repair_type (type_id, repair_type)
+    values (#{typeId,jdbcType=INTEGER}, #{repairType,jdbcType=VARCHAR})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select type_id, repair_type
+    from repair_type
+  </select>
+</mapper>

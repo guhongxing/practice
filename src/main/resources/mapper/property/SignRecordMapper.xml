@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lionel.mapper.property.SignRecordMapper">
+  <resultMap id="BaseResultMap" type="com.lionel.model.property.SignRecord">
+    <id column="sign_id" jdbcType="VARCHAR" property="signId" />
+    <result column="mall_id" jdbcType="VARCHAR" property="mallId" />
+    <result column="property_id" jdbcType="VARCHAR" property="propertyId" />
+    <result column="point_id" jdbcType="VARCHAR" property="pointId" />
+    <result column="checker_id" jdbcType="VARCHAR" property="checkerId" />
+    <result column="checker_name" jdbcType="VARCHAR" property="checkerName" />
+    <result column="sign_time" jdbcType="TIMESTAMP" property="signTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from check_sign_record
+    where sign_id = #{signId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lionel.model.property.SignRecord">
+    insert into check_sign_record (sign_id, mall_id, property_id, 
+      point_id, checker_id, checker_name, 
+      sign_time)
+    values (#{signId,jdbcType=VARCHAR}, #{mallId,jdbcType=VARCHAR}, #{propertyId,jdbcType=VARCHAR}, 
+      #{pointId,jdbcType=VARCHAR}, #{checkerId,jdbcType=VARCHAR}, #{checkerName,jdbcType=VARCHAR}, 
+      #{signTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lionel.model.property.SignRecord">
+    update check_sign_record
+    set mall_id = #{mallId,jdbcType=VARCHAR},
+      property_id = #{propertyId,jdbcType=VARCHAR},
+      point_id = #{pointId,jdbcType=VARCHAR},
+      checker_id = #{checkerId,jdbcType=VARCHAR},
+      checker_name = #{checkerName,jdbcType=VARCHAR},
+      sign_time = #{signTime,jdbcType=TIMESTAMP}
+    where sign_id = #{signId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select sign_id, mall_id, property_id, point_id, checker_id, checker_name, sign_time
+    from check_sign_record
+    where sign_id = #{signId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select sign_id, mall_id, property_id, point_id, checker_id, checker_name, sign_time
+    from check_sign_record
+  </select>
+</mapper>

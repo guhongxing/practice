@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lionel.mapper.property.DecorateCheckMapper">
+  <resultMap id="BaseResultMap" type="com.lionel.model.property.DecorateCheck">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="decorate_id" jdbcType="VARCHAR" property="decorateId" />
+    <result column="mall_id" jdbcType="VARCHAR" property="mallId" />
+    <result column="stall_name" jdbcType="VARCHAR" property="stallName" />
+    <result column="old_rate" jdbcType="INTEGER" property="oldRate" />
+    <result column="new_rate" jdbcType="INTEGER" property="newRate" />
+    <result column="record_id" jdbcType="VARCHAR" property="recordId" />
+    <result column="record_name" jdbcType="VARCHAR" property="recordName" />
+    <result column="record_time" jdbcType="TIMESTAMP" property="recordTime" />
+    <result column="record_explain" jdbcType="VARCHAR" property="recordExplain" />
+    <result column="pictures_count" jdbcType="INTEGER" property="picturesCount" />
+  </resultMap>
+  <insert id="insert" parameterType="com.lionel.model.property.DecorateCheck">
+    insert into decorate_check_record (id, decorate_id, mall_id, 
+      stall_name, old_rate, new_rate, 
+      record_id, record_name, record_time, 
+      record_explain, pictures_count)
+    values (#{id,jdbcType=VARCHAR}, #{decorateId,jdbcType=VARCHAR}, #{mallId,jdbcType=VARCHAR}, 
+      #{stallName,jdbcType=VARCHAR}, #{oldRate,jdbcType=INTEGER}, #{newRate,jdbcType=INTEGER}, 
+      #{recordId,jdbcType=VARCHAR}, #{recordName,jdbcType=VARCHAR}, #{recordTime,jdbcType=TIMESTAMP}, 
+      #{recordExplain,jdbcType=VARCHAR}, #{picturesCount,jdbcType=INTEGER})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, decorate_id, mall_id, stall_name, old_rate, new_rate, record_id, record_name, 
+    record_time, record_explain, pictures_count
+    from decorate_check_record
+  </select>
+</mapper>

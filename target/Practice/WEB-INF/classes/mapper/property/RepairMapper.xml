@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lionel.mapper.property.RepairMapper">
+  <resultMap id="BaseResultMap" type="com.lionel.model.property.Repair">
+    <id column="repair_id" jdbcType="VARCHAR" property="repairId" />
+    <result column="mall_id" jdbcType="VARCHAR" property="mallId" />
+    <result column="repair_type" jdbcType="INTEGER" property="repairType" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="construction_time" jdbcType="TIMESTAMP" property="constructionTime" />
+    <result column="repair_company" jdbcType="VARCHAR" property="repairCompany" />
+    <result column="repair_name" jdbcType="VARCHAR" property="repairName" />
+    <result column="repair_phone" jdbcType="VARCHAR" property="repairPhone" />
+    <result column="repair_explain" jdbcType="VARCHAR" property="repairExplain" />
+    <result column="repair_cost" jdbcType="DOUBLE" property="repairCost" />
+    <result column="record_id" jdbcType="VARCHAR" property="recordId" />
+    <result column="record_name" jdbcType="VARCHAR" property="recordName" />
+    <result column="record_time" jdbcType="TIMESTAMP" property="recordTime" />
+    <result column="update_id" jdbcType="VARCHAR" property="updateId" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from repair_record
+    where repair_id = #{repairId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lionel.model.property.Repair">
+    insert into repair_record (repair_id, mall_id, repair_type, 
+      project_name, construction_time, repair_company, 
+      repair_name, repair_phone, repair_explain, 
+      repair_cost, record_id, record_name, 
+      record_time, update_id, update_name, 
+      update_time)
+    values (#{repairId,jdbcType=VARCHAR}, #{mallId,jdbcType=VARCHAR}, #{repairType,jdbcType=INTEGER}, 
+      #{projectName,jdbcType=VARCHAR}, #{constructionTime,jdbcType=TIMESTAMP}, #{repairCompany,jdbcType=VARCHAR}, 
+      #{repairName,jdbcType=VARCHAR}, #{repairPhone,jdbcType=VARCHAR}, #{repairExplain,jdbcType=VARCHAR}, 
+      #{repairCost,jdbcType=DOUBLE}, #{recordId,jdbcType=VARCHAR}, #{recordName,jdbcType=VARCHAR}, 
+      #{recordTime,jdbcType=TIMESTAMP}, #{updateId,jdbcType=VARCHAR}, #{updateName,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lionel.model.property.Repair">
+    update repair_record
+    set mall_id = #{mallId,jdbcType=VARCHAR},
+      repair_type = #{repairType,jdbcType=INTEGER},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      construction_time = #{constructionTime,jdbcType=TIMESTAMP},
+      repair_company = #{repairCompany,jdbcType=VARCHAR},
+      repair_name = #{repairName,jdbcType=VARCHAR},
+      repair_phone = #{repairPhone,jdbcType=VARCHAR},
+      repair_explain = #{repairExplain,jdbcType=VARCHAR},
+      repair_cost = #{repairCost,jdbcType=DOUBLE},
+      record_id = #{recordId,jdbcType=VARCHAR},
+      record_name = #{recordName,jdbcType=VARCHAR},
+      record_time = #{recordTime,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=VARCHAR},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where repair_id = #{repairId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select repair_id, mall_id, repair_type, project_name, construction_time, repair_company, 
+    repair_name, repair_phone, repair_explain, repair_cost, record_id, record_name, record_time, 
+    update_id, update_name, update_time
+    from repair_record
+    where repair_id = #{repairId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select repair_id, mall_id, repair_type, project_name, construction_time, repair_company, 
+    repair_name, repair_phone, repair_explain, repair_cost, record_id, record_name, record_time, 
+    update_id, update_name, update_time
+    from repair_record
+  </select>
+</mapper>

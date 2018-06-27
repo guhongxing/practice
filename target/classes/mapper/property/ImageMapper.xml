@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lionel.mapper.property.ImageMapper">
+  <resultMap id="BaseResultMap" type="com.lionel.model.property.Image">
+    <id column="primary_id" jdbcType="VARCHAR" property="primaryId" />
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from image_manage
+    where primary_id = #{primaryId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lionel.model.property.Image">
+    insert into image_manage (primary_id, id, type, 
+      url, create_time)
+    values (#{primaryId,jdbcType=VARCHAR}, #{id,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{url,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lionel.model.property.Image">
+    update image_manage
+    set id = #{id,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where primary_id = #{primaryId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select primary_id, id, type, url, create_time
+    from image_manage
+    where primary_id = #{primaryId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select primary_id, id, type, url, create_time
+    from image_manage
+  </select>
+</mapper>

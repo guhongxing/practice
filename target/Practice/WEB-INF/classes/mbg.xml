@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!-- 
+		targetRuntime：指定生成代码的运行目标
+			可选值：
+				MyBatis：可以生成动态WHERE条件的SQL
+				MyBatis3Simple：只能生成简单的CURD
+				Ibatista2Java2
+				Ibatista2Java5
+	 -->
+	<context id="DB2Tables" targetRuntime="MyBatis3Simple">
+	<commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+		<!-- 指定如何连接到目标数据库 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/xxx"
+			userId="root"
+			password="root">
+		</jdbcConnection>
+		
+		<!-- Java类型解析器 -->
+		<javaTypeResolver>
+			<!-- 是否强制转换BigDecimals -->
+			<property name="forceBigDecimals" value="false"></property>
+		</javaTypeResolver>
+		
+		<!-- 配置JavaBean的生成策略 -->
+		<!-- 
+			targetPackage：目标包名；
+			targetProject：目标工程；
+		 -->
+		<javaModelGenerator targetPackage="com.lionel.model.property" targetProject="./src/main/java">
+			<property name="enableSubPackages" value="true"></property>
+			<property name="trimStrings" value="true"></property>
+		</javaModelGenerator>
+		
+		<!-- sql映射生成策略 -->
+		<sqlMapGenerator targetPackage="com.lionel.mapper.property" targetProject="./src/main/java">
+			<property name="enableSubPackages" value="true"></property>
+		</sqlMapGenerator>
+		
+		<!--mapper接口的所在位置 -->
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.lionel.mapper.property" targetProject="./src/main/java">
+			<property name="enableSubPackages" value="true"></property>
+		</javaClientGenerator>
+		
+		<!-- 根据表创建JavaBean-->
+		<!-- 
+			tableName：表名；
+			domainObjectName：要生成的类名；
+		 -->
+		<table tableName="check_assess_manage" domainObjectName="CheckAssess"></table>
+		<table tableName="check_point_message" domainObjectName="Point"></table>
+		<table tableName="check_sign_record" domainObjectName="SignRecord"></table>
+		<table tableName="check_staff_relation" domainObjectName="CheckStaff"></table>
+		<table tableName="check_task" domainObjectName="CheckTask"></table>
+		<table tableName="image_manage" domainObjectName="Image"></table>
+		<table tableName="repair_record" domainObjectName="Repair"></table>
+		<table tableName="repair_type" domainObjectName="RepairType"></table>
+		<table tableName="report_manage" domainObjectName="Report"></table>
+		<table tableName="decorate_check_record" domainObjectName="DecorateCheck"></table>
+		<table tableName="decorate_manage" domainObjectName="Decorate"></table>
+		
+	</context>
+	
+</generatorConfiguration>

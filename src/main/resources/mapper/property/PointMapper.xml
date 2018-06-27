@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lionel.mapper.property.PointMapper">
+  <resultMap id="BaseResultMap" type="com.lionel.model.property.Point">
+    <id column="point_id" jdbcType="VARCHAR" property="pointId" />
+    <result column="mall_id" jdbcType="VARCHAR" property="mallId" />
+    <result column="mall_name" jdbcType="VARCHAR" property="mallName" />
+    <result column="serial_number" jdbcType="VARCHAR" property="serialNumber" />
+    <result column="point_name" jdbcType="VARCHAR" property="pointName" />
+    <result column="point_type" jdbcType="INTEGER" property="pointType" />
+    <result column="point_location" jdbcType="VARCHAR" property="pointLocation" />
+    <result column="register_name" jdbcType="VARCHAR" property="registerName" />
+    <result column="register_time" jdbcType="TIMESTAMP" property="registerTime" />
+    <result column="update_id" jdbcType="VARCHAR" property="updateId" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from check_point_message
+    where point_id = #{pointId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lionel.model.property.Point">
+    insert into check_point_message (point_id, mall_id, serial_number, 
+      point_name, point_type, point_location, 
+      register_name, register_time)
+    values (#{pointId,jdbcType=VARCHAR}, #{mallId,jdbcType=VARCHAR}, #{serialNumber,jdbcType=VARCHAR}, 
+      #{pointName,jdbcType=VARCHAR}, #{pointType,jdbcType=INTEGER}, #{pointLocation,jdbcType=VARCHAR}, 
+      #{registerName,jdbcType=VARCHAR}, #{registerTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lionel.model.property.Point">
+    update check_point_message
+    set 
+    <if test="mallId neq null">
+    	mall_id = #{mallId,jdbcType=VARCHAR},
+    </if>
+    <if test="serialNumber neq null">
+    	serial_number = #{serialNumber,jdbcType=VARCHAR},
+    </if>
+    <if test="pointName neq null">
+    	point_name = #{pointName,jdbcType=VARCHAR},
+    </if>
+    <if test="pointType neq null">
+    	point_type = #{pointType,jdbcType=INTEGER},
+    </if>
+    <if test="pointLocation neq null">
+    	point_location = #{pointLocation,jdbcType=VARCHAR},
+    </if>
+    <if test="registerName neq null">
+    	register_name = #{registerName,jdbcType=VARCHAR},
+    </if>
+    <if test="registerTime neq null">
+    	register_time = #{registerTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="updateId neq null">
+    	update_id = #{updateId,jdbcType=VARCHAR},
+    </if>
+    <if test="updateName neq null">
+    	update_name = #{updateName,jdbcType=VARCHAR},
+    </if>
+    <if test="updateTime neq null">
+    	update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    where point_id = #{pointId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select point_id, mall_id, serial_number, point_name, point_type, point_location, 
+    register_name, register_time, update_id, update_name, update_time
+    from check_point_message
+    where point_id = #{pointId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" parameterType="com.lionel.model.property.Condition" resultMap="BaseResultMap">
+    select point_id, mall.mall_name, serial_number, point_name, point_location, 
+    register_name, register_time
+    from check_point_message,mall 
+    where check_point_message.mall_id=mall.mall_id 
+    <if test="mallId != null">
+    	and mall.mall_id=#{mallId,jdbcType=VARCHAR}
+    </if>
+    <if test="startTime != null">
+    	and register_time>=#{startTime,jdbcType=VARCHAR}
+    </if>
+    <if test="endTime != null">
+    	and register_time &lt;=#{endTime,jdbcType=VARCHAR}
+    </if>
+    
+   </select>
+  <select id="primaryKeyMax" parameterType="java.lang.String" resultType="java.lang.String">
+  	SELECT max(point_id) FROM check_point_message where point_id like #{condition,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lionel.mapper.property.DecorateMapper">
+  <resultMap id="BaseResultMap" type="com.lionel.model.property.Decorate">
+    <result column="decorate_id" jdbcType="VARCHAR" property="decorateId" />
+    <result column="mall_id" jdbcType="VARCHAR" property="mallId" />
+    <result column="booth_number" jdbcType="VARCHAR" property="boothNumber" />
+    <result column="store_name" jdbcType="VARCHAR" property="storeName" />
+    <result column="shopkeeper_name" jdbcType="VARCHAR" property="shopkeeperName" />
+    <result column="shopkeeper_phone" jdbcType="VARCHAR" property="shopkeeperPhone" />
+    <result column="plan_start_time" jdbcType="TIMESTAMP" property="planStartTime" />
+    <result column="plan_end_time" jdbcType="TIMESTAMP" property="planEndTime" />
+    <result column="actual_start_time" jdbcType="TIMESTAMP" property="actualStartTime" />
+    <result column="actual_end_time" jdbcType="TIMESTAMP" property="actualEndTime" />
+    <result column="decorate_status" jdbcType="INTEGER" property="decorateStatus" />
+    <result column="progress_rate" jdbcType="VARCHAR" property="progressRate" />
+    <result column="decorate_company_name" jdbcType="VARCHAR" property="decorateCompanyName" />
+    <result column="decorate_comyany_principal" jdbcType="VARCHAR" property="decorateComyanyPrincipal" />
+    <result column="decorate_company_phone" jdbcType="VARCHAR" property="decorateCompanyPhone" />
+    <result column="record_name" jdbcType="VARCHAR" property="recordName" />
+    <result column="record_time" jdbcType="TIMESTAMP" property="recordTime" />
+    <result column="check_status" jdbcType="INTEGER" property="checkStatus" />
+    <result column="check_time" jdbcType="TIMESTAMP" property="checkTime" />
+    <result column="check_name" jdbcType="VARCHAR" property="checkName" />
+    <result column="check_id" jdbcType="VARCHAR" property="checkId" />
+    <result column="refuse_reson" jdbcType="VARCHAR" property="refuseReson" />
+  </resultMap>
+  <insert id="insert" parameterType="com.lionel.model.property.Decorate">
+    insert into decorate_manage (decorate_id, mall_id, booth_number, 
+      store_name, shopkeeper_name, shopkeeper_phone, 
+      plan_start_time, plan_end_time, actual_start_time, 
+      actual_end_time, decorate_status, progress_rate, 
+      decorate_company_name, decorate_comyany_principal, 
+      decorate_company_phone, record_name, record_time, 
+      check_status, check_time, check_name, 
+      check_id, refuse_reson)
+    values (#{decorateId,jdbcType=VARCHAR}, #{mallId,jdbcType=VARCHAR}, #{boothNumber,jdbcType=VARCHAR}, 
+      #{storeName,jdbcType=VARCHAR}, #{shopkeeperName,jdbcType=VARCHAR}, #{shopkeeperPhone,jdbcType=VARCHAR}, 
+      #{planStartTime,jdbcType=TIMESTAMP}, #{planEndTime,jdbcType=TIMESTAMP}, #{actualStartTime,jdbcType=TIMESTAMP}, 
+      #{actualEndTime,jdbcType=TIMESTAMP}, #{decorateStatus,jdbcType=INTEGER}, #{progressRate,jdbcType=VARCHAR}, 
+      #{decorateCompanyName,jdbcType=VARCHAR}, #{decorateComyanyPrincipal,jdbcType=VARCHAR}, 
+      #{decorateCompanyPhone,jdbcType=VARCHAR}, #{recordName,jdbcType=VARCHAR}, #{recordTime,jdbcType=TIMESTAMP}, 
+      #{checkStatus,jdbcType=INTEGER}, #{checkTime,jdbcType=TIMESTAMP}, #{checkName,jdbcType=VARCHAR}, 
+      #{checkId,jdbcType=VARCHAR}, #{refuseReson,jdbcType=VARCHAR})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select decorate_id, mall_id, booth_number, store_name, shopkeeper_name, shopkeeper_phone, 
+    plan_start_time, plan_end_time, actual_start_time, actual_end_time, decorate_status, 
+    progress_rate, decorate_company_name, decorate_comyany_principal, decorate_company_phone, 
+    record_name, record_time, check_status, check_time, check_name, check_id, refuse_reson
+    from decorate_manage
+  </select>
+</mapper>

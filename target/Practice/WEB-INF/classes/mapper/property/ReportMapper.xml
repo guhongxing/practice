@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lionel.mapper.property.ReportMapper">
+  <resultMap id="BaseResultMap" type="com.lionel.model.property.Report">
+    <id column="report_id" jdbcType="VARCHAR" property="reportId" />
+    <result column="report_type" jdbcType="INTEGER" property="reportType" />
+    <result column="mall_id" jdbcType="VARCHAR" property="mallId" />
+    <result column="report_equipment" jdbcType="VARCHAR" property="reportEquipment" />
+    <result column="equipment_id" jdbcType="VARCHAR" property="equipmentId" />
+    <result column="report_message" jdbcType="VARCHAR" property="reportMessage" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="pictures_count" jdbcType="INTEGER" property="picturesCount" />
+    <result column="reporter_id" jdbcType="VARCHAR" property="reporterId" />
+    <result column="reporter_phone" jdbcType="VARCHAR" property="reporterPhone" />
+    <result column="reporter_name" jdbcType="VARCHAR" property="reporterName" />
+    <result column="reporter_time" jdbcType="TIMESTAMP" property="reporterTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="solver_id" jdbcType="VARCHAR" property="solverId" />
+    <result column="solver_name" jdbcType="VARCHAR" property="solverName" />
+    <result column="solve_time" jdbcType="TIMESTAMP" property="solveTime" />
+    <result column="solve_explain" jdbcType="VARCHAR" property="solveExplain" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from report_manage
+    where report_id = #{reportId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lionel.model.property.Report">
+    insert into report_manage (report_id, report_type, mall_id, 
+      report_equipment, equipment_id, report_message, 
+      location, pictures_count, reporter_id, 
+      reporter_phone, reporter_name, reporter_time, 
+      status, solver_id, solver_name, 
+      solve_time, solve_explain)
+    values (#{reportId,jdbcType=VARCHAR}, #{reportType,jdbcType=INTEGER}, #{mallId,jdbcType=VARCHAR}, 
+      #{reportEquipment,jdbcType=VARCHAR}, #{equipmentId,jdbcType=VARCHAR}, #{reportMessage,jdbcType=VARCHAR}, 
+      #{location,jdbcType=VARCHAR}, #{picturesCount,jdbcType=INTEGER}, #{reporterId,jdbcType=VARCHAR}, 
+      #{reporterPhone,jdbcType=VARCHAR}, #{reporterName,jdbcType=VARCHAR}, #{reporterTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{solverId,jdbcType=VARCHAR}, #{solverName,jdbcType=VARCHAR}, 
+      #{solveTime,jdbcType=TIMESTAMP}, #{solveExplain,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lionel.model.property.Report">
+    update report_manage
+    set report_type = #{reportType,jdbcType=INTEGER},
+      mall_id = #{mallId,jdbcType=VARCHAR},
+      report_equipment = #{reportEquipment,jdbcType=VARCHAR},
+      equipment_id = #{equipmentId,jdbcType=VARCHAR},
+      report_message = #{reportMessage,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      pictures_count = #{picturesCount,jdbcType=INTEGER},
+      reporter_id = #{reporterId,jdbcType=VARCHAR},
+      reporter_phone = #{reporterPhone,jdbcType=VARCHAR},
+      reporter_name = #{reporterName,jdbcType=VARCHAR},
+      reporter_time = #{reporterTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      solver_id = #{solverId,jdbcType=VARCHAR},
+      solver_name = #{solverName,jdbcType=VARCHAR},
+      solve_time = #{solveTime,jdbcType=TIMESTAMP},
+      solve_explain = #{solveExplain,jdbcType=VARCHAR}
+    where report_id = #{reportId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select report_id, report_type, mall_id, report_equipment, equipment_id, report_message, 
+    location, pictures_count, reporter_id, reporter_phone, reporter_name, reporter_time, 
+    status, solver_id, solver_name, solve_time, solve_explain
+    from report_manage
+    where report_id = #{reportId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select report_id, report_type, mall_id, report_equipment, equipment_id, report_message, 
+    location, pictures_count, reporter_id, reporter_phone, reporter_name, reporter_time, 
+    status, solver_id, solver_name, solve_time, solve_explain
+    from report_manage
+  </select>
+</mapper>

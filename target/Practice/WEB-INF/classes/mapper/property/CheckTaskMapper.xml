@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lionel.mapper.property.CheckTaskMapper">
+  <resultMap id="BaseResultMap" type="com.lionel.model.property.CheckTask">
+    <id column="task_id" jdbcType="VARCHAR" property="taskId" />
+    <result column="task_type" jdbcType="INTEGER" property="taskType" />
+    <result column="mall_id" jdbcType="VARCHAR" property="mallId" />
+    <result column="property_id" jdbcType="VARCHAR" property="propertyId" />
+    <result column="staff_id" jdbcType="VARCHAR" property="staffId" />
+    <result column="point_type" jdbcType="INTEGER" property="pointType" />
+    <result column="point_id" jdbcType="VARCHAR" property="pointId" />
+    <result column="point_name" jdbcType="VARCHAR" property="pointName" />
+    <result column="point_location" jdbcType="VARCHAR" property="pointLocation" />
+    <result column="check_date" jdbcType="TIMESTAMP" property="checkDate" />
+    <result column="check_time_plan" jdbcType="INTEGER" property="checkTimePlan" />
+    <result column="check_time_actual" jdbcType="INTEGER" property="checkTimeActual" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from check_task
+    where task_id = #{taskId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lionel.model.property.CheckTask">
+    insert into check_task (task_id, task_type, mall_id, 
+      property_id, staff_id, point_type, 
+      point_id, point_name, point_location, 
+      check_date, check_time_plan, check_time_actual, 
+      update_time)
+    values (#{taskId,jdbcType=VARCHAR}, #{taskType,jdbcType=INTEGER}, #{mallId,jdbcType=VARCHAR}, 
+      #{propertyId,jdbcType=VARCHAR}, #{staffId,jdbcType=VARCHAR}, #{pointType,jdbcType=INTEGER}, 
+      #{pointId,jdbcType=VARCHAR}, #{pointName,jdbcType=VARCHAR}, #{pointLocation,jdbcType=VARCHAR}, 
+      #{checkDate,jdbcType=TIMESTAMP}, #{checkTimePlan,jdbcType=INTEGER}, #{checkTimeActual,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lionel.model.property.CheckTask">
+    update check_task
+    set task_type = #{taskType,jdbcType=INTEGER},
+      mall_id = #{mallId,jdbcType=VARCHAR},
+      property_id = #{propertyId,jdbcType=VARCHAR},
+      staff_id = #{staffId,jdbcType=VARCHAR},
+      point_type = #{pointType,jdbcType=INTEGER},
+      point_id = #{pointId,jdbcType=VARCHAR},
+      point_name = #{pointName,jdbcType=VARCHAR},
+      point_location = #{pointLocation,jdbcType=VARCHAR},
+      check_date = #{checkDate,jdbcType=TIMESTAMP},
+      check_time_plan = #{checkTimePlan,jdbcType=INTEGER},
+      check_time_actual = #{checkTimeActual,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where task_id = #{taskId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select task_id, task_type, mall_id, property_id, staff_id, point_type, point_id, 
+    point_name, point_location, check_date, check_time_plan, check_time_actual, update_time
+    from check_task
+    where task_id = #{taskId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select task_id, task_type, mall_id, property_id, staff_id, point_type, point_id, 
+    point_name, point_location, check_date, check_time_plan, check_time_actual, update_time
+    from check_task
+  </select>
+</mapper>

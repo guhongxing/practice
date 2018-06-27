@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lionel.mapper.redis.RedisMapper">
+  <resultMap id="BaseResultMap" type="com.lionel.model.redis.Student">
+    <id column="sid" jdbcType="INTEGER" property="sid" />
+    <result column="sage" jdbcType="INTEGER" property="sage" />
+    <result column="sname" jdbcType="VARCHAR" property="sname" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+  </resultMap>
+  <insert id="Insert" parameterType="com.lionel.model.redis.Student">
+  		insert into student(sid,sname,sage,sex) 
+  		values(#{sid,jdbcType=INTEGER},#{sname,jdbcType=VARCHAR},#{sage,jdbcType=INTEGER},#{sex,jdbcType=VARCHAR})
+  </insert>
+  
+  <select id="findNameByid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select * from student where sid=#{sid,jdbcType=INTEGER}
+  
+  </select>
+  
+  <select id="findIdByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select * from student where sname=#{sname,jdbcType=VARCHAR}
+  
+  </select>
+  <update id="updateNameById" parameterType="com.lionel.model.redis.Student">
+  	update student set sname=#{sname,jdbcType=VARCHAR} where sid=#{sid,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByCondition" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select * from student where sex=#{sex,jdbcType=VARCHAR}
+  
+  </select>
+</mapper>
