@@ -59,6 +59,12 @@ public class CheckPointController {
 		List<Point> list=checkPointService.slectPoint(condition);
 		return ResponseBean.success(page,list);
 	}
+	
+	@RequestMapping("/test")
+	public ResponseBean gitTest() {
+		System.out.println("恭喜你，测试成功");
+		return ResponseBean.success();
+	}
 
 
 }
