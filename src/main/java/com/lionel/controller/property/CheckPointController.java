@@ -56,7 +56,6 @@ public class CheckPointController {
 
 		Page<Student> page = PageHelper.startPage(condition.getPageNum(), condition.getPageSize());
 		List<Point> list=checkPointService.slectPoint(condition);
-		List<Point> list1=checkPointService.slectPoint(condition);
 		return ResponseBean.success(page,list);
 	}
 
